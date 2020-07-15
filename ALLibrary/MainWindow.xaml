@@ -1,0 +1,89 @@
+﻿<Window x:Class="ALLibrary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"     
+        Title="MainWindow" Height="670" Width="1320" Background="White" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="DataGridRow" x:Key="FunDgv" >
+            <Setter Property="Background" Value="#FF3C3C3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="Background" Value="#FF2f2f2f"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="397*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF3C3C3C" Grid.ColumnSpan="2" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" >
+            <Image Source="Resources/school-icon-png-23.png" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,5,0,0" Width="60" Height="60" />
+            <Label Content="AL Library" Foreground="White" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="100,5,0,0"/>
+            
+            <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,10">
+                <Button Content="➖" x:Name="btnMin" FontSize="16" Foreground="AliceBlue" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0,5,0" Style="{DynamicResource EmptyButton}" Click="btnMin_Click"/>
+                <Button Content="☐" x:Name="btnMax" FontSize="16" Foreground="AliceBlue" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0,5,0" Style="{DynamicResource EmptyButton}" Click="btnMax_Click" />
+                <Button Content="✕" x:Name="btnClose" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0,5,0" Style="{DynamicResource CloseButton}" Click="btnClose_Click" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Background="#FF3C3C3C" Grid.ColumnSpan="2">
+            <Label Content="Copyright JS Solution Pvt Ltd" Margin="10,0,0,0" Foreground="White"/>
+            <Label Content="12 Wednesday April 2017 10.30 P.M." Foreground="#FFFDFDFD" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" x:Name="pnlLeft" Width="200" Margin="0,0,0,0"  HorizontalAlignment="Left" Background="#FF3C3C3C">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="Visible" BorderThickness="1" Width="200" HorizontalAlignment="Left" Margin="0,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" RowStyle="{DynamicResource FunDgv}"  Padding="5" Name="disFunctions" RowHeight="35" HeadersVisibility="None" GridLinesVisibility="None" BorderThickness="0" IsSynchronizedWithCurrentItem="False" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" MinColumnWidth="12" MouseLeftButtonUp="disFunctions_MouseLeftButtonUp" BorderBrush="{x:Null}" Foreground="{x:Null}" SelectionMode="Single" AutoGenerateColumns="False" CanUserAddRows="False" RowDetailsVisibilityMode="Collapsed" Background="{x:Null}" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding FunctionID}" Width="20" Visibility="Hidden"/>
+                                <DataGridTextColumn Binding="{Binding FunctionName}" Width="200" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                            <Expander x:Name="expand" Header="Report" Margin="5" Foreground="White" Width="185" >
+                                <Grid Margin="5">
+                                    <StackPanel Orientation="Vertical" Margin="2">
+                                        <Button Content="Button" HorizontalAlignment="Left" Margin="5,5,5,5" Padding="0,10" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.475,2.227" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                                        <Button Content="Button" HorizontalAlignment="Left" Margin="5,5,5,5"  Padding="0,10" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.475,2.227" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Expander>
+                        </StackPanel>
+                    </Grid>
+
+                </ScrollViewer>
+                <DockPanel Grid.Row="1">
+                    <Button Content="=" Height="30" FontSize="20" VerticalAlignment="Top" Width="30" Background="{x:Null}" BorderBrush="White" BorderThickness="1" Foreground="White" HorizontalAlignment="Right" Style="{DynamicResource EmptyButton}"/>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Column="1" x:Name="UCTest">
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>

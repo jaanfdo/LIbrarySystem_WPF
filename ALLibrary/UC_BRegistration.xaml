@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="ALLibrary.UC_BRegistration"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Background="White" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Margin="5,0">
+                <TextBlock x:Name="lblFunctionName" Text="Book Registration" Foreground="#FF0066FF" FontSize="20"/>
+                <TextBlock x:Name="lblFunctionCode" Text="FCT-014" Foreground="DarkGray" FontSize="14"/>
+            </StackPanel>
+            <GridSplitter ResizeDirection="Rows" Height="2" Background="#FF3C3C3C" />           
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="5" Background="#FFC1C1C1">
+                <StackPanel Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="0, 5" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cmbFilter" Height="25">
+                            <ComboBoxItem IsSelected="True" >Book No</ComboBoxItem>
+                            <ComboBoxItem >Book Name</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtSearch" Height="25" Width="250" ToolTip="Search Details"/>
+                    </StackPanel>
+                    <DataGrid x:Name="dgvMain" MouseLeftButtonUp="dgvMain_MouseLeftButtonUp" />
+                </StackPanel>
+            </Grid>
+            <GridSplitter Grid.Column="1"  Width="5" Margin="0,5" HorizontalAlignment="Stretch"  Background="#FFC3C3C3" >
+            </GridSplitter>
+            <Grid Grid.Column="2" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="250"/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Category"/>
+                <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtCategoryID" Height="25" Width="250" Background="#FFC3C3C3" MouseDoubleClick="txtCategoryID_MouseDoubleClick"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Book No."/>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtBNo" Height="25" Width="250" Background="#FFC3C3C3"/>
+                <Label Grid.Column="0" Grid.Row="2" Content="Book Name"/>
+                <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtBName" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="3" Content="Language"/>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtLanguage" Height="25" Width="250" Background="#FFC3C3C3" MouseDoubleClick="txtLanguage_MouseDoubleClick"/>
+                <Label Grid.Column="0" Grid.Row="4" Content="ISBN"/>
+                <TextBox Grid.Column="1" Grid.Row="4" x:Name="txtISBN" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="5" Content="Author"/>
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="txtAuthor" Height="25" Width="250" Background="#FFC3C3C3" MouseDoubleClick="txtAuthor_MouseDoubleClick"/>
+                <Label Grid.Column="0" Grid.Row="6" Content="Publisher Name"/>
+                <TextBox Grid.Column="1" Grid.Row="6" x:Name="txtPublisherName" Height="25" Width="250" Background="#FFC3C3C3" MouseDoubleClick="txtPublisherName_MouseDoubleClick"/>
+                <Label Grid.Column="0" Grid.Row="7" Content="Publication Date"/>
+                <DatePicker Grid.Column="1" Grid.Row="7" x:Name="dtpPublicationDate" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="8" Content="Edition"/>
+                <TextBox Grid.Column="1" Grid.Row="8" x:Name="txtEdition" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="9" Content="No of Copies"/>
+                <TextBox Grid.Column="1" Grid.Row="9" x:Name="txtNoCopies" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="10" Content="Purchasing Date"/>
+                <DatePicker Grid.Column="1" Grid.Row="10" x:Name="dtpBPurchasingDate" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="11" Content="Bill No."/>
+                <TextBox Grid.Column="1" Grid.Row="11" x:Name="txtBillNo" Height="25" Width="250"/>
+                <Label Grid.Column="0" Grid.Row="12" Content="Price"/>
+                <TextBox Grid.Column="1" Grid.Row="12" x:Name="txtPrice" Height="25" Width="250"/>
+            </Grid>
+        </Grid>
+
+        <Popup x:Name="pop_Event" Placement="MousePoint" PopupAnimation="Slide" IsOpen="False" HorizontalAlignment="Left" AllowsTransparency="True" >
+            <Popup.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.7" RenderingBias="Quality" ShadowDepth="10"/>
+            </Popup.Effect>
+            <Border BorderThickness="0,0,1,1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15"/>
+                </Border.Effect>
+
+                <Grid Width="250" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label  Content="Categories" Foreground="White" Background="#FF3C3C3C"/>
+                        <Button x:Name="btn_Close" Content="✕" FontSize="12" Click="btn_Close_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource EmptyButton}" Height="22" Width="22" HorizontalAlignment="Right"  VerticalAlignment="Top" Foreground="#FFEC0000"/>
+                    </Grid>
+                    <ListBox Grid.Row="1" x:Name="lstCategory" Margin="2" Height="75" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                    <Button Grid.Row="2" Content="Add" x:Name="btn_PoPAdd" Margin="2" Background="#FF41B1E1" Foreground="White" Click="btn_PoPAdd_Click" />
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Popup x:Name="pop_Event2" Placement="MousePoint" PopupAnimation="Slide" IsOpen="False" HorizontalAlignment="Left" AllowsTransparency="True" >
+            <Popup.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.7" RenderingBias="Quality" ShadowDepth="10"/>
+            </Popup.Effect>
+            <Border BorderThickness="0,0,1,1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15"/>
+                </Border.Effect>
+
+                <Grid Width="250" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label  Content="Languages" Foreground="White" Background="#FF3C3C3C"/>
+                        <Button x:Name="btn_Close2" Content="✕" FontSize="12" Click="btn_Close2_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource EmptyButton}" Height="22" Width="22" HorizontalAlignment="Right"  VerticalAlignment="Top" Foreground="#FFEC0000"/>
+                    </Grid>
+                    <ListBox Grid.Row="1" x:Name="lstLanguages" Margin="2" Height="75" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                    <Button Grid.Row="2" Content="Add" x:Name="btn_PoPAdd2" Margin="2" Background="#FF41B1E1" Foreground="White" Click="btn_PoPAdd2_Click" />
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Popup x:Name="pop_Event3" Placement="MousePoint" PopupAnimation="Slide" IsOpen="False" HorizontalAlignment="Left" AllowsTransparency="True" >
+            <Popup.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.7" RenderingBias="Quality" ShadowDepth="10"/>
+            </Popup.Effect>
+            <Border BorderThickness="0,0,1,1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15"/>
+                </Border.Effect>
+
+                <Grid Width="250" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label  Content="Languages" Foreground="White" Background="#FF3C3C3C"/>
+                        <Button x:Name="btn_Close3" Content="✕" FontSize="12" Click="btn_Close3_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource EmptyButton}" Height="22" Width="22" HorizontalAlignment="Right"  VerticalAlignment="Top" Foreground="#FFEC0000"/>
+                    </Grid>
+                    <ListBox Grid.Row="1" x:Name="lstAuthor" Margin="2" Height="75" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                    <Button Grid.Row="2" Content="Add" x:Name="btn_PoPAdd3" Margin="2" Background="#FF41B1E1" Foreground="White" Click="btn_PoPAdd3_Click" />
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Popup x:Name="pop_Event4" Placement="MousePoint" PopupAnimation="Slide" IsOpen="False" HorizontalAlignment="Left" AllowsTransparency="True" >
+            <Popup.Effect>
+                <DropShadowEffect BlurRadius="10" Opacity="0.7" RenderingBias="Quality" ShadowDepth="10"/>
+            </Popup.Effect>
+            <Border BorderThickness="0,0,1,1">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15"/>
+                </Border.Effect>
+
+                <Grid Width="250" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Label  Content="Languages" Foreground="White" Background="#FF3C3C3C"/>
+                        <Button x:Name="btn_Close4" Content="✕" FontSize="12" Click="btn_Clos4_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource EmptyButton}" Height="22" Width="22" HorizontalAlignment="Right"  VerticalAlignment="Top" Foreground="#FFEC0000"/>
+                    </Grid>
+                    <ListBox Grid.Row="1" x:Name="lstPublisher" Margin="2" Height="75" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                    <Button Grid.Row="2" Content="Add" x:Name="btn_PoPAdd4" Margin="2" Background="#FF41B1E1" Foreground="White" Click="btn_PoPAdd4_Click" />
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Margin="20, 5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button x:Name="btnAdd" Content="Add" Height="30" Width="80" Margin="5" Click="btnAdd_Click"/>
+                <Button x:Name="btnUpdate" Content="Update" Height="30" Width="80" Margin="5" Click="btnUpdate_Click"/>
+                <Button x:Name="btnDelete" Content="Delete"  Height="30"  Width="80" Margin="5" Click="btnDelete_Click" />
+                <Button x:Name="btnNew" Content="New" Height="30" Width="80" Margin="5" Click="btnNew_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
